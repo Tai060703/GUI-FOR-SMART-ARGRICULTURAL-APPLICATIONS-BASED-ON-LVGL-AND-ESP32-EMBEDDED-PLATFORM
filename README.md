@@ -46,6 +46,21 @@ The software follows a multi-tasking architecture managed by **FreeRTOS** to ens
 
 ---
 
+## 🖼️ UI Showcase
+
+[cite_start]Our HMI features a high-fidelity interface with a consistent design language across multiple functional modules, ensuring a seamless user experience[cite: 701, 704].
+
+| **Home Screen** | **Manual Switch Control** |
+| :---: | :---: |
+| ![Home Screen](Images/Home.png) | ![Switch Control](Images/Switch(2).png) |
+| [cite_start]*Real-time environment monitoring with live trend charts[cite: 443, 473].* | [cite_start]*Direct toggle switches for pumps, fans, and lighting systems[cite: 477, 501].* |
+
+| **Wi-Fi Configuration** | **Advanced Scheduler** |
+| :---: | :---: |
+| ![Wi-Fi Config](Images/Wifi.png) | ![Scheduler](Images/Scheduler.png) |
+| [cite_start]*Full QWERTY virtual keyboard for on-device network setup[cite: 504, 547].* | [cite_start]*Complex routine management with a visual calendar interface[cite: 552, 617, 697].* |
+
+---
 ## 📊 Resource Evaluation & Efficiency
 
 The system has been rigorously evaluated for stability and resource utilization:
