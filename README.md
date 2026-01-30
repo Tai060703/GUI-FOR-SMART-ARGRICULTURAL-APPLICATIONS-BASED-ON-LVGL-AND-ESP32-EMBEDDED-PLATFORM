@@ -1,53 +1,93 @@
-| Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-C5 | ESP32-C6 | ESP32-C61 | ESP32-H2 | ESP32-P4 | ESP32-S2 | ESP32-S3 | Linux |
-| ----------------- | ----- | -------- | -------- | -------- | -------- | --------- | -------- | -------- | -------- | -------- | ----- |
+# Smart Agriculture HMI Controller (ESP32-S3 + LVGL)
 
-# Hello World Example
+> **An industrial-grade, user-centric embedded interface for precision farming, powered by the ESP32-S3 and LVGL graphics library.**
 
-Starts a FreeRTOS task to print "Hello World".
+[![Hardware](https://img.shields.io/badge/Hardware-ESP32--S3-green)](https://www.espressif.com/en/products/socs/esp32-s3)
+[![Graphics](https://img.shields.io/badge/Graphics-LVGL-blue)](https://lvgl.io/)
+[![OS](https://img.shields.io/badge/OS-FreeRTOS-orange)](https://www.freertos.org/)
+[![Connectivity](https://img.shields.io/badge/Connectivity-MQTT%20%2F%20Cloud-lightgrey)](https://mqtt.org/)
 
-(See the README.md file in the upper level 'examples' directory for more information about examples.)
+---
 
-## How to use example
+## 📖 Overview
 
-Follow detailed instructions provided specifically for this example.
+This project implements a sophisticated **Graphical User Interface (GUI)** designed to bridge the gap between advanced IoT automation and non-technical agricultural operators. Utilizing the **ESP32-S3** and the **LVGL** library, we have developed a 7-inch interactive dashboard that replaces traditional, rigid hardware controllers with a modern, intuitive experience.
 
-Select the instructions depending on Espressif chip installed on your development board:
+**Key Objectives:**
+* Transition from segmented LCDs to full-color interactive dashboards.
+* Deliver premium "Industry 4.0" features on cost-effective embedded hardware.
+* Minimize the technical learning curve for farmers through user-centric design.
 
-- [ESP32 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/stable/get-started/index.html)
-- [ESP32-S2 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s2/get-started/index.html)
+---
+
+## ✨ Key Achievements
+
+### 🎨 Design Success
+* **Highly Responsive UI:** Created a touch-friendly interface optimized for 7-inch displays.
+* **Complex Widget Implementation:** Successfully integrated real-time charts for trend monitoring and calendar widgets for scheduling.
+* **Cognitive Load Reduction:** Applied a uniform color scheme (Green/White) and consistent font sizes to simplify information processing for the operator.
+
+### ⚙️ Technical Success
+* **System Integration:** Achieved stable integration of the ESP32-S3 SoC, FreeRTOS, and the LVGL framework.
+* **Advanced Behavioral Scheduler:** Implemented a robust "Routine Engine" that supports complex, reusable scheduling logic.
+* **Cloud Connectivity:** Real-time data synchronization and remote control via MQTT protocol.
+
+---
+
+## 🏗️ Technical Architecture
+
+The software follows a multi-tasking architecture managed by **FreeRTOS** to ensure that graphical rendering does not interfere with critical control logic.
 
 
-## Example folder contents
 
-The project **hello_world** contains one source file in C language [hello_world_main.c](main/hello_world_main.c). The file is located in folder [main](main).
+* **GUI Framework:** LVGL (Light and Versatile Graphics Library).
+* **Operating System:** FreeRTOS for real-time task management.
+* **Communication:** MQTT for low-latency IoT interaction.
 
-ESP-IDF projects are built using CMake. The project build configuration is contained in `CMakeLists.txt` files that provide set of directives and instructions describing the project's source files and targets (executable, library, or both).
+---
 
-Below is short explanation of remaining files in the project folder.
+## 📊 Resource Evaluation & Efficiency
 
-```
-├── CMakeLists.txt
-├── pytest_hello_world.py      Python script used for automated testing
-├── main
-│   ├── CMakeLists.txt
-│   └── hello_world_main.c
-└── README.md                  This is the file you are currently reading
-```
+The system has been rigorously evaluated for stability and resource utilization:
 
-For more information on structure and contents of ESP-IDF projects, please refer to Section [Build System](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/build-system.html) of the ESP-IDF Programming Guide.
+| Memory Type | Usage [bytes] | Usage [%] | Technical Verdict |
+| :--- | :--- | :--- | :--- |
+| **IRAM** | 16,383 | **99.99%** | Maximized for zero-wait state instruction execution. |
+| **DIRAM** | 140,687 | **41.17%** | Significant overhead remaining (**201 KB**) for future logic. |
+| **Flash Code** | 994,998 | - | Optimized binary footprint for the ESP32-S3 platform. |
+| **Flash Data** | 607,824 | - | Efficient management of high-fidelity UI assets (fonts, icons). |
 
-## Troubleshooting
+**Total Binary Size:** ~1.7 MB (occupying only ~10% of a 16MB Flash module).
 
-* Program upload failure
+---
 
-    * Hardware connection is not correct: run `idf.py -p PORT monitor`, and reboot your board to see if there are any output logs.
-    * The baud rate for downloading is too high: lower your baud rate in the `menuconfig` menu, and try again.
+## ⚠️ Limitations & Roadmap
 
-## Technical support and feedback
+### **Current Limitations**
+* **Edge-Case Exceptions:** Some specific software exceptions under rare conditions are still being refined for perfect robustness.
+* **Power Management:** Currently lacks integration with ESP32-S3 Light/Deep Sleep modes for display power saving.
+* **Static Configuration:** Peripheral hardware mapping is hardcoded and cannot yet be reconfigured via the UI.
 
-Please use the following feedback channels:
+### **Future Improvements**
+* **Enhanced Robustness:** Implementation of comprehensive error-trapping and Watchdog Timers (WDT).
+* **Low-Power Logic:** Auto-dimming or screen timeout features to preserve hardware longevity.
+* **Dynamic Mapping:** A dedicated "Settings" menu to allow users to customize sensor and controller pins on-the-fly.
+* **Edge Analytics:** Utilizing the remaining **201 KB of DIRAM** for local data logging and offline trend analysis.
 
-* For technical queries, go to the [esp32.com](https://esp32.com/) forum
-* For a feature request or bug report, create a [GitHub issue](https://github.com/espressif/esp-idf/issues)
+---
 
-We will get back to you as soon as possible.
+## 👥 Team & Acknowledgments
+
+**Students (Computer Engineering - Council 1CC):**
+* **TRAN MANH TAI** (2152950)
+* **HUYNH DAO DONG QUAN** (2053367)
+* **TRAN TRUONG GIANG** (2152534)
+
+**Thesis Committee:**
+* **Assoc. Prof., Dr. Tran Ngoc Thinh**
+* **Dr. Le Trong Nhan** (Supervisor)
+* **Assoc. Prof., Dr. Pham Hoang Anh**
+* **B.Sc. Phan Van Sy** (Reviewer)
+
+---
+*Ho Chi Minh City, December 2025*
